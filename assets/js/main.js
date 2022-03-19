@@ -101,7 +101,7 @@
       $(".gallery").scrollex({
         top: "30vh",
         bottom: "30vh",
-        delay: 10,
+        delay: 50,
         initialize: function () {
           $(this).addClass("inactive");
         },
@@ -119,7 +119,7 @@
       // Generic sections.
       $(".main.style1").scrollex({
         mode: "middle",
-        delay: 10,
+        delay: 100,
         initialize: function () {
           $(this).addClass("inactive");
         },
@@ -136,7 +136,7 @@
 
       $(".main.style2").scrollex({
         mode: "middle",
-        delay: 10,
+        delay: 100,
         initialize: function () {
           $(this).addClass("inactive");
         },
@@ -154,7 +154,7 @@
       // Contact.
       $("#contact").scrollex({
         top: "50%",
-        delay: 10,
+        delay: 50,
         initialize: function () {
           $(this).addClass("inactive");
         },
@@ -204,111 +204,14 @@
           offset: $header.outerHeight() - 1,
         });
 
-	// Section transitions.
-		if (browser.canUse('transition')) {
-
-			var on = function() {
-
-				// Galleries.
-					$('.gallery')
-						.scrollex({
-							top:		'30vh',
-							bottom:		'30vh',
-							delay:		50,
-							initialize:	function() { $(this).addClass('inactive'); },
-							terminate:	function() { $(this).removeClass('inactive'); },
-							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
-						});
-
-				// Generic sections.
-					$('.main.style1')
-						.scrollex({
-							mode:		'middle',
-							delay:		25,
-							initialize:	function() { $(this).addClass('inactive'); },
-							terminate:	function() { $(this).removeClass('inactive'); },
-							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
-						});
-
-					$('.main.style2')
-						.scrollex({
-							mode:		'middle',
-							delay:		25,
-							initialize:	function() { $(this).addClass('inactive'); },
-							terminate:	function() { $(this).removeClass('inactive'); },
-							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
-						});
-
-				// Contact.
-					$('#contact')
-						.scrollex({
-							top:		'50%',
-							delay:		25,
-							initialize:	function() { $(this).addClass('inactive'); },
-							terminate:	function() { $(this).removeClass('inactive'); },
-							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
-						});
-
-			};
-
-			var off = function() {
-
-				// Galleries.
-					$('.gallery')
-						.unscrollex();
-
-				// Generic sections.
-					$('.main.style1')
-						.unscrollex();
-
-					$('.main.style2')
-						.unscrollex();
-
-				// Contact.
-					$('#contact')
-						.unscrollex();
-
-			};
-
-			breakpoints.on('<=small', off);
-			breakpoints.on('>small', on);
-
-		}
-
-	// Events.
-		var resizeTimeout, resizeScrollTimeout;
-
-		$window
-			.on('resize', function() {
-
-				// Disable animations/transitions.
-					$body.addClass('is-resizing');
-
-				clearTimeout(resizeTimeout);
-
-				resizeTimeout = setTimeout(function() {
-
-					// Update scrolly links.
-						$('a[href^="#"]').scrolly({
-							speed: 1500,
-							offset: $header.outerHeight() - 1
-						});
-
-					// Re-enable animations/transitions.
-						setTimeout(function() {
-							$body.removeClass('is-resizing');
-							$window.trigger('scroll');
-						}, 0);
-
-				}, 100);
-
-			})
-			.on('load', function() {
-				$window.trigger('resize');
-			});
-
+        // Re-enable animations/transitions.
+        setTimeout(function () {
+          $body.removeClass("is-resizing");
+          $window.trigger("scroll");
+        }, 0);
+      }, 100);
+    })
+    .on("load", function () {
+      $window.trigger("resize");
+    });
 })(jQuery);
